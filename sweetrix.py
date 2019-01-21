@@ -1,3 +1,18 @@
+'''
+            DEVELOPER NAME : BALAVIGNESH.M
+
+            IMPLEMENTED DATE : 20/01/2019
+
+            SCOPE OF IMPLEMENTATION :
+            
+             For encrypt and decrypt the amr
+            file using python and play when it wantedted
+
+
+'''
+
+
+
 from tools import file_encrypt_decrypt as endypt
 from tools import dir_helper as dird
 from config import config as conn
