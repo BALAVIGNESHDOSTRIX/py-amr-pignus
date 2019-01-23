@@ -42,4 +42,58 @@ def friends_csv_check(file_path):
 #Removing the needed file
 def File_Remove(filename,file_path):
         os.remove(file_path + filename)
-         
+
+#Create new directory
+def make_original_file_dir():
+        path = "../original_sweet"
+        access_rights = 0o755
+
+        try:
+                os.mkdir(path,access_rights)
+        except OSError:  
+                print ("Creation of the directory %s failed" % path)
+        else:  
+                print ("Successfully created the directory %s " % path)
+
+# make_original_file_dir()   
+
+def make_needvoice_dir():
+        path = "../needvoice"
+
+        try:
+                os.mkdir(path)
+        except OSError:  
+                print ("Creation of the directory %s failed" % path)
+        else:  
+                print ("Successfully created the directory %s " % path)
+
+
+def make_friends_dir():
+        path = "../friends"
+
+        try:
+                os.mkdir(path)
+        except OSError:  
+                print ("Creation of the directory %s failed" % path)
+        else:  
+                print ("Successfully created the directory %s " % path)
+
+def make_encrypted_dir():
+        path = "../encrypted_sweet"
+
+        try:
+                os.mkdir(path)
+        except OSError:  
+                print ("Creation of the directory %s failed" % path)
+        else:  
+                print ("Successfully created the directory %s " % path)
+
+def make_csv_dir():
+        path = "../csv_files"
+
+        try:
+                os.mkdir(path)
+        except OSError:  
+                print ("Creation of the directory %s failed" % path)
+        else:  
+                print ("Successfully created the directory %s " % path)
