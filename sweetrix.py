@@ -100,7 +100,7 @@ class SweetVoicer:
         friend_name = str(input("Give me the friend Name: "))
         csv.read_specific_user_rec(friend_name)
 
-    def get_friend_voice(self):
+    def get_voice(self):
         enc_file_name,nee_name = csv.get_specific_friend_rec()
         if endypt.FileDecrypt(enc_file_name,conn.ENCRYPTED_FILE_PATH,nee_name):
             play.amr_player(nee_name + conn.AMR_FILE_REF)
@@ -130,7 +130,7 @@ def TargetSyncronizer(choice):
         3 : dostrix.display_friends_list,
         4 : dostrix.show_friend_records,
         5 : dostrix.shutdown,
-        6 : dostrix.get_friend_voice
+        6 : dostrix.get_voice
     }.get(choice)()
 
 while True:
