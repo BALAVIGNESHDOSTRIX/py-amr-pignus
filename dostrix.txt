@@ -1,7 +1,0 @@
-asn1crypto==0.24.0
-cffi==1.11.5
-cryptography==2.4.2
-idna==2.8
-pyAesCrypt==0.4.2
-pycparser==2.19
-six==1.12.0
