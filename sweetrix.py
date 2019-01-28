@@ -18,15 +18,15 @@ from tools import filename_handler as filehand
 from tools import csvfile_helper as csv
 from tools import player as play
 import os 
+import getpass
 
 class SweetVoicer:
 
     def __init__(self):
        
-        conn.SALT = str(input("Set the Salt : "))
+        conn.SALT = getpass.getpass('Enter your Salt : ')
         if conn.SALT != "":
             print("Salt Setuped Successfully !....")
-            print(conn.SALT)
         self.dir_list = [conn.ORGINAL_FILE_PATH,conn.NEEED_VOICE_PATH,conn.ENCRYPTED_FILE_PATH,conn.CSV_FILES_PATH,conn.FRIENDS_CSV_PATH]
 
         for x in self.dir_list:
