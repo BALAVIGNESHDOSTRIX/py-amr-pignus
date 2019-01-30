@@ -47,7 +47,6 @@ def File_Remove(filename,file_path):
 def make_original_file_dir():
         path = "../original_sweet"
         access_rights = 0o755
-
         try:
                 os.mkdir(path,access_rights)
         except OSError:  
@@ -59,7 +58,6 @@ def make_original_file_dir():
 
 def make_needvoice_dir():
         path = "../needvoice"
-
         try:
                 os.mkdir(path)
         except OSError:  
@@ -70,7 +68,6 @@ def make_needvoice_dir():
 
 def make_friends_dir():
         path = "../friends"
-
         try:
                 os.mkdir(path)
         except OSError:  
@@ -80,7 +77,6 @@ def make_friends_dir():
 
 def make_encrypted_dir():
         path = "../encrypted_sweet"
-
         try:
                 os.mkdir(path)
         except OSError:  
@@ -90,7 +86,6 @@ def make_encrypted_dir():
 
 def make_csv_dir():
         path = "../csv_files"
-
         try:
                 os.mkdir(path)
         except OSError:  

@@ -4,7 +4,6 @@ from config import config as conn
 bufferSize = conn.BUFFERSIZE
 password = conn.SALT
 
-
 def FileEncrypt(file_name,file_path):
     pyAesCrypt.encryptFile(file_path +conn.ROOT +file_name, conn.ENCRYPTED_FILE_PATH + file_name +  conn.AES_FILE_REF, password, bufferSize)
     return True

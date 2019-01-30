@@ -4,7 +4,10 @@ import pandas as pd
 from config import config as conn 
 from . import  dir_helper as dirs
 from . import filename_handler as fileh
+from prettytable import PrettyTable as table
 
+x = table()
+y = table()
 
 def CSV_exsist(file_name):
     if dirs.CSVFileExsist(file_name,conn.CSV_FILES_PATH):
@@ -72,14 +75,11 @@ def read_specific_user_rec(sweet_name):
         with open(target_csv,'r') as read_csv:
                 reader = csv.reader(read_csv)
                 rows = list(reader)
-                # print(rows[0][2])
-                print('+ {x}  +++++++++++++   {y}   +++++++++++++   {z}  +++++++++++++'.format(x=rows[0][0],y=rows[0][1],z=rows[0][2]))
+                x.field_names = [rows[0][0], rows[0][1], rows[0][2]]
                 for details in range(1,len(rows)):
                         year = rows[details][1][0] + rows[details][1][1] + rows[details][1][2] + rows[details][1][3]
                         month = rows[details][1][4] + rows[details][1][5]
                         day = rows[details][1][6] + rows[details][1][7]
-
-                        #time declaration
                         time_meridiean = None
                         if int(rows[details][2][0] + rows[details][2][1]) > 12:
                                 sr = int(rows[details][2][0] + rows[details][2][1]) - 12
@@ -87,24 +87,22 @@ def read_specific_user_rec(sweet_name):
                                 time_meridiean = "PM"
                         else:
                                 hr = rows[details][2][0] + rows[details][2][1]
-                                time_meridiean = "AM"
-                        
+                                time_meridiean = "AM"        
                         mit = rows[details][2][2] + rows[details][2][3]
                         sec = rows[details][2][4] + rows[details][2][5]
-                        print('+ {x}              +   {y}               +   {z}            +'.format(x=rows[details][0],y=day + "/" + month + "/" + year,z= str(hr) + ":" + mit + ":" + sec + "-" + time_meridiean))
-                print('++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++')
+                        x.add_row([rows[details][0],day + "/" + month + "/" + year,str(hr) + ":" + mit + ":" + sec + "-" + time_meridiean])
+                print(x)
+                
+                
 
 
 def get_specific_friend_rec():
         date = str(input("Enter the date for needed record : "))
         name = str(input("Enter the person name : "))
-        # print(date)  
         need_day = date[0:2]
         need_month = date[3:5]
         need_year = date[6:]
         need_date_str = need_year+need_month+need_day
-        # print(need_date_str)
-
         csv_file = conn.CSV_FILES_PATH + conn.ROOT + name + '.csv'
         with open(csv_file,'r') as read_csv:
                 reader = csv.reader(read_csv)
@@ -112,26 +110,20 @@ def get_specific_friend_rec():
                 index = 0
                 need_file = []
                 for n in range(0,len(rows)):
-                        # print(rows[index][1])
                         if rows[index][1] == need_date_str:
                                 need_file.append(rows[index])
                         index = index + 1
                 print(" ***** Available Records ***** ")
-                print(need_file)
-                print("+  Record  +++++++++  Name  ++++++++++  Year  ++++++++++  Time  ++++++++++")
+                y.field_names = ["Record","Name", "Year", "Time"]
                 index_state = 1
                 for n in need_file:
-
                         time_meridiean_status = None 
                         for_time = n[2][0:2]
                         for_min = n[2][2:4]
                         for_sec = n[2][4:]
-
                         for_year = n[1][0:4]
                         for_month = n[1][4:6]
                         for_day = n[1][6:]
-                        # print(for_day+for_month+for_year)
-
                         if int(for_time) > 12:
                                 sr = int(for_time) - 12
                                 hr = '0' + str(sr)
@@ -139,18 +131,12 @@ def get_specific_friend_rec():
                         else:
                                 hr = str(for_time)
                                 time_meridiean_status = "AM"
-
-                       
-                        print("+  {t}       +++++++++  {x}        +  {y}     +  {z}       +".format(x=n[0],y=for_day + "/" + for_month + "/" + for_year,z=hr + ":" + for_min + ":" + for_sec + "-" + time_meridiean_status,t=index_state))
+                        y.add_row([index_state,n[0],for_day + "/" + for_month + "/" + for_year, hr + ":" + for_min + ":" + for_sec + "-" + time_meridiean_status])
                         index_state = index_state + 1
-
+                print(y)
                 rec_get_access = int(input("Enter the record no you want to play : "))
-
-                # print(need_file[rec_get_access - 1])
-
                 need_enc_file = need_file[rec_get_access - 1][1] + "_" + need_file[rec_get_access - 1][2] + "-" + need_file[rec_get_access - 1][0] + conn.AES_AMR_REF
                 need_enc_file_name = need_file[rec_get_access - 1][1] + "_" + need_file[rec_get_access - 1][2] + "-" + need_file[rec_get_access - 1][0]
-                # print(need_enc_file)
                 return need_enc_file,need_enc_file_name
 
 
