@@ -6,7 +6,7 @@
             SCOPE OF IMPLEMENTATION :
             
              For encrypt and decrypt the amr
-            file using python and play when it wantedted
+            file using python and play when you want!..:)
 
 
 '''
